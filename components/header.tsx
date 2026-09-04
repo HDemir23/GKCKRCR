@@ -1,26 +1,24 @@
 "use client";
 
+import Image from "next/image";
 import { useEffect, useState } from "react";
 import {
-  BagSimple,
   List,
   Moon,
   Sun,
   X,
 } from "@phosphor-icons/react";
-import { useShop } from "./shop-provider";
 
 const links = [
   { href: "#koleksiyonlar", label: "Koleksiyonlar" },
-  { href: "#yeni", label: "Yeni eklenenler" },
-  { href: "#hediye", label: "Ücretsiz hediye" },
+  { href: "#yeni", label: "Showroom" },
+  { href: "#hediye", label: "Hediyeni al" },
   { href: "#hakkimda", label: "Hakkımda" },
 ];
 
 export function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [isDark, setIsDark] = useState(false);
-  const { cartCount } = useShop();
 
   useEffect(() => {
     const stored = localStorage.getItem("gk-theme");
@@ -40,10 +38,10 @@ export function Header() {
     <header className="site-header">
       <div className="shell header-inner">
         <a className="wordmark" href="#top" aria-label="GK Studio ana sayfa">
-          GK<span>Studio</span>
+          <Image className="brand-logo" src="/gk-logo.svg" alt="GK Studio" width={280} height={72} priority />
         </a>
 
-        <nav className={menuOpen ? "nav-links is-open" : "nav-links"} aria-label="Ana menü">
+        <nav id="mobile-menu" className={menuOpen ? "nav-links is-open" : "nav-links"} aria-label="Ana menü">
           {links.map((link) => (
             <a key={link.href} href={link.href} onClick={() => setMenuOpen(false)}>
               {link.label}
@@ -52,13 +50,8 @@ export function Header() {
         </nav>
 
         <div className="header-actions">
-          <button className="icon-button" type="button" onClick={toggleTheme} aria-label={isDark ? "Açık temaya geç" : "Koyu temaya geç"}>
+          <button className="icon-button" type="button" onClick={toggleTheme} aria-pressed={isDark} aria-label={isDark ? "Açık temaya geç" : "Koyu temaya geç"}>
             {isDark ? <Sun size={20} weight="regular" /> : <Moon size={20} weight="regular" />}
-          </button>
-          <button className="cart-button" type="button" aria-label={`Sepet, ${cartCount} ürün`}>
-            <BagSimple size={20} weight="regular" />
-            <span>Sepet</span>
-            <b>{cartCount}</b>
           </button>
           <button
             className="icon-button menu-button"

@@ -29,14 +29,15 @@ export function NewsletterForm() {
       <label htmlFor="email">E-posta adresin</label>
       <div className="input-row">
         <input id="email" name="email" type="email" autoComplete="email" placeholder="sen@ornek.com" required aria-describedby="email-status" />
-        <button className="primary-button" type="submit" disabled={status === "loading"}>
-          {status === "loading" ? "Hazırlanıyor" : "Hediyeni al"}
+        <button className="primary-button" type="submit" disabled={status === "loading"} aria-busy={status === "loading"}>
+          Hediyeni al
           <ArrowRight size={18} weight="bold" />
         </button>
       </div>
       <p id="email-status" className={`form-message ${status}`} aria-live="polite">
         {status === "success" && <><CheckCircle size={18} weight="fill" /> Harika, ücretsiz setin için kayıt alındı.</>}
         {status === "error" && <><WarningCircle size={18} weight="fill" /> Geçerli bir e-posta adresi gir.</>}
+        {status === "loading" && "Hediyen hazırlanıyor."}
         {status === "idle" && "Yalnızca yeni koleksiyonlar ve stüdyo hediyeleri için yazarız."}
       </p>
     </form>

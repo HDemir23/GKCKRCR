@@ -14,39 +14,41 @@ import { ProductCard } from "@/components/product-card";
 import { Reveal } from "@/components/reveal";
 
 const products = [
-  { title: "Celestial Frame TV Set", category: "Wall art", image: "/images/gk-wall-art-room.webp", imagePosition: "42% center" },
-  { title: "Moon Garden Stickers", category: "Sticker set", image: "/images/gk-sticker-flatlay.webp", imagePosition: "center 35%" },
-  { title: "Japandi Ink Pair", category: "Printable set", image: "/images/gk-hero-studio.webp", imagePosition: "68% 38%" },
-  { title: "Cozy Botanicals", category: "Pattern bundle", image: "/images/gk-sticker-flatlay.webp", imagePosition: "25% 78%" },
-  { title: "Retro Flower Study", category: "Wall art", image: "/images/gk-hero-studio.webp", imagePosition: "81% 37%" },
+  { title: "Celestial Frame TV Set", category: "Duvar sanatı", image: "/images/gk-wall-art-room.webp", imagePosition: "42% center", href: "https://www.etsy.com/shop/DesignGKStudio" },
+  { title: "Moon Garden Stickers", category: "Sticker seti", image: "/images/gk-sticker-flatlay.webp", imagePosition: "center 35%", href: "https://www.etsy.com/shop/MoodPaperShop" },
+  { title: "Japandi Ink Pair", category: "Baskı seti", image: "/images/gk-hero-studio.webp", imagePosition: "68% 38%", href: "https://www.etsy.com/shop/DesignGKStudio" },
+  { title: "Cozy Botanicals", category: "Desen paketi", image: "/images/gk-sticker-flatlay.webp", imagePosition: "25% 78%", href: "https://www.etsy.com/shop/MoodPaperShop" },
+  { title: "Retro Flower Study", category: "Duvar sanatı", image: "/images/gk-hero-studio.webp", imagePosition: "81% 37%", href: "https://www.etsy.com/shop/DesignGKStudio" },
 ];
 
 export default function Home() {
   return (
     <div id="top">
       <a className="skip-link" href="#main-content">İçeriğe geç</a>
-      <div className="announcement">Ücretsiz mini print ve sticker seti seni bekliyor. <a href="#hediye">Hediyeni al</a></div>
+      <div className="announcement"><span aria-hidden="true">紙と光</span> GK Studio dijital sanat showroomu. <a href="#yeni">Showroom'u gez</a></div>
       <Header />
 
       <main id="main-content">
         <section className="hero shell" aria-labelledby="hero-title">
           <Reveal className="hero-copy" mode="load">
-            <p className="eyebrow">Dijital tasarım stüdyosu</p>
+            <p className="eyebrow">Dijital tasarım stüdyosu <span aria-hidden="true">/ 紙</span></p>
             <h1 id="hero-title">Fikrinden duvarına.</h1>
             <p className="hero-lead">Baskıya hazır wall art, sticker ve pattern setleri. Seç, indir, kendi alanına taşı.</p>
             <div className="hero-actions">
               <a className="primary-button" href="#koleksiyonlar">Koleksiyonları gör <ArrowDownRight size={18} weight="bold" /></a>
-              <a className="text-link" href="#yeni">Yeni eklenenler <ArrowUpRight size={17} /></a>
+              <a className="text-link" href="#yeni">Showroom <ArrowUpRight size={17} /></a>
             </div>
           </Reveal>
-          <Reveal className="hero-media" delay={0.08} mode="load">
-            <Image src="/images/gk-hero-studio.webp" alt="GK Studio wall art ve sticker koleksiyonlarının stüdyo sunumu" fill priority loading="eager" sizes="(max-width: 767px) 100vw, 56vw" />
-          </Reveal>
+          <div className="hero-media">
+            <Image src="/images/gk-hero-brutalist-v2.webp" alt="Beton bir stüdyoda siyah, kırık beyaz ve kırmızı tonlarda GK Studio baskıları" fill priority loading="eager" sizes="(max-width: 767px) 100vw, 56vw" />
+            <span className="hero-seal" aria-hidden="true">形</span>
+          </div>
         </section>
 
         <section className="studio-note shell" aria-label="Stüdyo yaklaşımı">
-          <p>GK Studio, günlük alanlara karakter katan dijital sanat ve kağıt ürünleri tasarlar.</p>
-          <div className="note-icon"><Sparkle size={28} weight="regular" /></div>
+          <div className="note-orbit" aria-hidden="true"><span /></div>
+          <p>Boşluk, denge ve iz. Günlük alanlara karakter katan dijital sanat ve kağıt ürünleri.</p>
+          <p className="note-detail">Brutalist netliği; Japon baskı sanatının sakin ritmi, asimetrisi ve dokusuyla buluşturuyoruz.</p>
         </section>
 
         <section className="collections shell section" id="koleksiyonlar" aria-labelledby="collections-title">
@@ -83,10 +85,11 @@ export default function Home() {
         </section>
 
         <section className="products-section section" id="yeni" aria-labelledby="products-title">
+          <div className="wave-field" aria-hidden="true" />
           <div className="shell">
             <Reveal className="products-heading">
-              <h2 id="products-title">Stüdyodan yeni çıktı</h2>
-              <p>En yeni dijital setleri hızlıca keşfet.</p>
+              <h2 id="products-title">Showroom</h2>
+              <p>Seçili işleri incele. Her parça ilgili Etsy vitrininine açılır.</p>
             </Reveal>
             <div className="product-scroller">
               {products.map((product, index) => <ProductCard key={product.title} {...product} index={index} />)}
@@ -107,6 +110,7 @@ export default function Home() {
 
         <section className="gift-section shell section" id="hediye" aria-labelledby="gift-title">
           <Reveal className="gift-panel">
+            <div className="gift-sun" aria-hidden="true" />
             <div className="gift-copy">
               <p className="eyebrow">Stüdyo hediyesi</p>
               <h2 id="gift-title">İlk tasarım bizden.</h2>
@@ -117,7 +121,10 @@ export default function Home() {
         </section>
 
         <section className="about-section shell section" id="hakkimda" aria-labelledby="about-title">
-          <Reveal className="about-mark">GK</Reveal>
+          <Reveal className="about-portrait">
+            <Image src="/images/gk-hero-studio.webp" alt="GK Studio çalışma masasında baskı ve kağıt ürünleri" fill sizes="(max-width: 767px) 100vw, 42vw" />
+            <span aria-hidden="true">GK</span>
+          </Reveal>
           <Reveal className="about-copy" delay={0.08}>
             <h2 id="about-title">Merhaba, ben Gökçe.</h2>
             <p>Basit fikirleri net ve kullanılabilir tasarımlara dönüştürüyorum. Her dosyayı gerçek baskı kalitesini düşünerek hazırlıyorum.</p>
@@ -131,11 +138,11 @@ export default function Home() {
 
       <footer className="site-footer">
         <div className="shell footer-main">
-          <a className="wordmark footer-wordmark" href="#top">GK<span>Studio</span></a>
+          <a className="wordmark footer-wordmark" href="#top" aria-label="GK Studio ana sayfa"><Image className="brand-logo" src="/gk-logo.svg" alt="GK Studio" width={280} height={72} /></a>
           <p>Her ruh haline uygun dijital tasarımlar.</p>
           <nav aria-label="Alt menü">
             <a href="#koleksiyonlar">Koleksiyonlar</a>
-            <a href="#hediye">Ücretsiz hediye</a>
+            <a href="#hediye">Hediyeni al</a>
             <a href="#hakkimda">Hakkımda</a>
           </nav>
         </div>

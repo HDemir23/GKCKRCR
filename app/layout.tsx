@@ -1,26 +1,19 @@
 import type { Metadata } from "next";
-import localFont from "next/font/local";
-import { ShopProvider } from "@/components/shop-provider";
+import "@fontsource-variable/archivo";
+import "@fontsource/ibm-plex-mono/latin-ext-400.css";
+import "@fontsource/ibm-plex-mono/latin-ext-600.css";
 import "./globals.css";
 
-const geist = localFont({
-  src: "./fonts/geist-latin.woff2",
-  variable: "--font-geist",
-  display: "swap",
-});
-
 export const metadata: Metadata = {
-  title: "GK Studio | Dijital wall art ve sticker setleri",
+  title: "GK Studio | Dijital sanat showroomu",
   description:
-    "Baskıya hazır wall art, Frame TV art, sticker ve pattern koleksiyonları. Tasarla, indir, kendi alanına taşı.",
+    "GK Studio wall art, Frame TV art, sticker ve pattern koleksiyonlarını keşfet. Seçili işler ilgili Etsy vitrininine açılır.",
 };
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="tr" suppressHydrationWarning>
-      <body className={geist.variable}>
-        <ShopProvider>{children}</ShopProvider>
-      </body>
+      <body>{children}</body>
     </html>
   );
 }
